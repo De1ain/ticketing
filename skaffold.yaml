@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Congif
+deploy:
+  kubectl: 
+    manifests: 
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: de1ain/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: 'src/***/*.ts'
+            dest: .
+    - image: de1ain/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: '***/*.js'
+            dest: .
+    - image: de1ain/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: 'src/***/*.ts'
+            dest: .
+    - image: de1ain/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: 'src/***/*.ts'
+            dest: .
+    - image: de1ain/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: de1ain/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync: 
+        manual:
+          - src: 'src/***/*.ts'
+            dest: .
