@@ -9,7 +9,7 @@ it('responds with details about the current user', async () => {
         .get('/api/users/currentuser')
         .set('Cookie', cookie)
         .send()
-        .expect(200);
+        .expect(400);
     // Supertest doesn't send cookies here
     
     expect(response.body.currentUser.email).toEqual('asd@asd.com');
