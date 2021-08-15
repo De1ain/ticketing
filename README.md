@@ -264,9 +264,14 @@ List of all secrets tha tshould be defined:
 
 4. systemctl status docker - to check on docker status (should be active, running)
 
+5. When deploying to Digital Ocean cluster: 
+I have 2 ingress-srv files - for dev and for prod. THey doffer in the domain name (host).
+Remember ot create secrets on DO cluster as well - JWT_KEY and STRIPE_KEY.
+Make sure to  enable ingress nginx for Digital Ocean.
+
 ---
 
-GitHub actions
+### GitHub actions
 
 for each service that has tests, on every push, tests are run.
 It also has to specify the env vars that exist on the machine (need to create secrets on github).
