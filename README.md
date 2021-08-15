@@ -263,6 +263,26 @@ List of all secrets tha tshould be defined:
 
 ---
 
+GitHub actions
+
+for each service that has tests, on every push, tests are run.
+It also has to specify the env vars that exist on the machine (need to create secrets on github).
+Below are the workflow scripts:
+
+name: tests-auth
+on:
+  pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      JWT_KEY: ${{ secrets.JWT_KEY }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd auth && npm install && npm run test:ci
+
+---
+
 ### TODO:
 
 1. Eliminate the need in .env files?...
