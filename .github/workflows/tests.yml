@@ -12,16 +12,8 @@ jobs:
   # 
   build:
     runs-on: ubuntu-latest
+    env:
+      JWT_KEY: ${{ secrets.JWT_KEY }}
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && npm install && npm run test:ci
-    
-  # This workflow also contains a job called "greet"
-  greet:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
