@@ -91,6 +91,7 @@ https://minikube.sigs.k8s.io/docs/commands/docker-env/
    Example: kubectl apply -f posts.yaml
 6. kubectl describe pod [podname] - print some info about the ruinning pod
    Example: kubectl describe pod posts
+7.  kubectl get nodes - on local usually only 1. on Digital Ocean - 3.
 
 ### Kubernetes Deployments commands:
 
@@ -117,6 +118,7 @@ https://minikube.sigs.k8s.io/docs/commands/docker-env/
 ### Kubernetes other commands:
 
 1. k config get-contexts - to see all contexts - local or google cloud
+   after deploying to Digital Ocean, there are 2 contexts now - minikube and do-fra1-ticketing
 2. k config use-context $CONTEXT_NAME - switch between different contexts
 3. kubectl config view
 4. kubectl create secret generic jwt-secret --from-literal=JWT_KEY=thesecretphrase
@@ -180,6 +182,7 @@ https://minikube.sigs.k8s.io/docs/commands/docker-env/
    This line has to be at the end.
 2. The project also uses Skaffold - Skaffold is a command line tool that facilitates continuous development for Kubernetes-native applications.
 3. When opening a URL like 'https://ticketing.dev/api/users/currentuser' and there's a warning "Connection is not private...", click somewhere on the page and type "thisisunsafe" and the page will reload and display your content.
+4. common module can be found here - https://www.npmjs.com/package/@ticketing-microservices-common/common
 
 ---
 
