@@ -25,7 +25,7 @@ const LandingPage = ({ currentUser, tickets }) => {
     return (
         <BaseLayout currentUser={currentUser && currentUser.currentUser}>
             Your are {!currentUser && ' NOT'} signed in
-            <h1>Tickets</h1>
+            <h2>Tickets</h2>
             <table className="table">
                 <thead>
                     <tr>

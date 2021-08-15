@@ -6,6 +6,8 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
+    console.log('Starting up...');
+
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY env var must be defined!');
     }
@@ -22,35 +24,27 @@ const start = async () => {
         throw new Error('NATS_URL must be defined');
     }
 
-    // try {
-        await natsWrapper.connect(
-            process.env.NATS_CLUSTER_ID,
-            process.env.NATS_CLIENT_ID,
-            process.env.NATS_URL
-        );
-        natsWrapper.client.on('close', () => {
-            console.log('NATS connection closed');
-            process.exit();
-        });
-        process.on('SIGINT', () => natsWrapper.client.close());
-        process.on('SIGTERM', () => natsWrapper.client.close());
-        
-        new OrderCreatedListener(natsWrapper.client).listen();
-        new OrderCancelledListener(natsWrapper.client).listen();
+    await natsWrapper.connect(
+        process.env.NATS_CLUSTER_ID,
+        process.env.NATS_CLIENT_ID,
+        process.env.NATS_URL
+    );
+    natsWrapper.client.on('close', () => {
+        console.log('NATS connection closed');
+        process.exit();
+    });
+    process.on('SIGINT', () => natsWrapper.client.close());
+    process.on('SIGTERM', () => natsWrapper.client.close());
+    
+    new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCancelledListener(natsWrapper.client).listen();
 
-    try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        });
-    } catch (err) {
-        console.log('xxxxxxxxxxxx ERROR xxxxxxxxxxxxxxxxx:  ', err);
-    }
-        console.log('Connected to mongo db')
-    // } catch (err) {
-    //     console.error(err);
-    // }
+    await mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+    });
+    console.log('Connected to mongo db')
 
     app.listen(3000, () => {
         console.log('Listening on port 3000!');
