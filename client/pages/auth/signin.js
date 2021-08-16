@@ -25,24 +25,28 @@ const SigninComponent = ({ currentUser }) => {
             <form onSubmit={onSubmit}>
                 <h1>Sign In</h1>
                 <div className="form-group">
-                    <label>Email Address</label>
+                    <label htmlFor="emailInput">Email Address</label>
                     <input
+                        id="emailInput"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         className="form-control"
+                        placeholder="Enter email"
                     />
                 </div>
-                <div>
-                    <label>Password</label>
+                <div className="form-group">
+                    <label htmlFor="passwordInput">Password</label>
                     <input
+                        id="passwordInput"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         type="password"
                         className="form-control"
+                        placeholder="Password"
                     />
                 </div>
                 {errors}
-                <button className="btn btn-primary">Sign In</button>
+                <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
         </BaseLayout>
     );

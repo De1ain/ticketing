@@ -14,7 +14,8 @@ const TicketShow = ({ currentUser, ticket }) => {
 
     return (
         <BaseLayout currentUser={currentUser && currentUser.currentUser}>
-            <h1>{ticket.title}</h1>
+            <h1>Ticket Details</h1>
+            <h3>{ticket.title}</h3>
             <h4>Price: {ticket.price}</h4>
             {errors}
             <button

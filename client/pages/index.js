@@ -13,25 +13,18 @@ const LandingPage = ({ currentUser, tickets }) => {
                     </Link>
                 </td>
                 <td>{ticket.price}</td>
-                <td>
-                    <Link href={`/tickets/${ticket.id}`}>
-                        <a className="link">View</a>
-                    </Link>
-                </td>
             </tr>
         );
     });
 
     return (
         <BaseLayout currentUser={currentUser && currentUser.currentUser}>
-            Your are {!currentUser && ' NOT'} signed in
-            <h2>Tickets</h2>
+            <h1>Tickets</h1>
             <table className="table">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Price</th>
-                        <th>Link</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,11 +39,23 @@ const LandingPage = ({ currentUser, tickets }) => {
 // getServerSideProps() runs only on server
 const getServerSideProps = async (context) => {
     const client = buildClient(context);
-    const { data: currentUser } = await client.get('/api/users/currentuser');
-    const { data: tickets } = await client.get('/api/tickets');
+    let currentUser = null;
+    let tickets = null;
+
+    const resCurrentUser = await client.get('/api/users/currentuser');
+    currentUser = resCurrentUser.data;
+    const resTickets = await client.get('/api/tickets');
+    tickets = resTickets.data;
+
+    if (!currentUser) {
+        currentUser = null;
+    }
+    if (!tickets) {
+        tickets = null;
+    }
 
     return { props: { currentUser, tickets } };
-}
+};
 
 export {
     LandingPage as default,

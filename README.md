@@ -134,6 +134,7 @@ https://minikube.sigs.k8s.io/docs/commands/docker-env/
     db.tickets
     db.tickets.find({ price: 111 }) - find all the tickets with specified price of '111'
 11. kubectl config unset contexts
+12. Web dashboard - https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/#deploying-the-dashboard-ui
 
 ---
 
