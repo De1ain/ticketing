@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 
 import useRequest from '../../hooks/use-request';
-import BaseLayout from '../../components/base-layout';
 
 const SignoutComponent = () => {
     const { doRequest } = useRequest({

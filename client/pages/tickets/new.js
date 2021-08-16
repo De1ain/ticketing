@@ -12,7 +12,7 @@ const NewTicket = ({ currentUser }) => {
         url: '/api/tickets',
         method: 'post',
         data: { title, price },
-        onSuccess: (ticket) => {
+        onSuccess: () => {
             Router.push('/');
         }
     });
@@ -37,21 +37,27 @@ const NewTicket = ({ currentUser }) => {
             <h1>Create a Ticket</h1>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
-                    <label>Title</label>
+                    <label htmlFor="ticketTitleInput">Title</label>
                     <input
+                        id="ticketTitleInput"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         type="text"
-                        className="form-control" />
+                        className="form-control"
+                        placeholder="Enter ticket title"
+                    />
                 </div>
                 <div className="form-group">
-                    <label>Price</label>
+                    <label htmlFor="ticketPriceInput">Price</label>
                     <input
+                        id="ticketPriceInput"
                         value={price}
                         onBlur={onBlur} // when the elem is defocused (deselected)
                         onChange={(e) => setPrice(e.target.value)}
                         type="text"
-                        className="form-control" />
+                        className="form-control"
+                        placeholder="Enter ticket price"
+                    />
                 </div>
                 {errors}
                 <button

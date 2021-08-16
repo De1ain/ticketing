@@ -12,7 +12,7 @@ const Header = ({ currentUser }) => {
         .map(({ label, href }) => {
             return (
                 <li key={href} className="nav-item">
-                    <Link href={href}>
+                    <Link className="nav-link" href={href}>
                         <a className="nav-link">{label}</a>
                     </Link>
                 </li>
