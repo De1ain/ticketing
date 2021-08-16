@@ -5,7 +5,7 @@ const BuildClient = ({ req }) => {
         // request comes from the server
         return axios.create({
             // baseURL: 'http://ingress-nginx-controller.kube-system.svc.cluster.local',
-            baseURL: 'ticketing-microservices-dev.xyz/',
+            baseURL: 'http://www.ticketing-microservices-dev.xyz/',
             headers: req.headers
         });
     } else {
