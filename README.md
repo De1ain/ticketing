@@ -291,9 +291,31 @@ jobs:
 
 ---
 
+### New features addition workflow: 
+
+1. Make some changes on a branch (not master)
+2. Push to GitHub
+3. Make a Pull Requests
+4. Merge into master
+
+---
+
+### How to shut down the cluster on Digital Ocean
+
+Delete Load Balancer: go to Networking -> Load Balancer -> More -> Destroy (it costs 10$/month)
+Delete Kubernetes cluster: go to Kubernetes -> cluster_name(ticketing) -> More -> Destroy (30$/month)
+
+---
+
 ### TODO:
 
 1. Eliminate the need in .env files?...
 2. Make use of convertPriceToCents in test file for new route handler as well.
 3. Extract default 60 seconds pay timeout from orders/new.ts
 4. Exctract stripe publishable key from [orderId].js
+5. Work on Client side
+   - Add the name of the user who created it
+   - Add more styling
+6. Add Https support. Check out cert-manager.io
+7. Add emailing service, i.e.: when a user purchases(pays for) a ticket, send them an email. Mailchimp or sendgrid
+8. Switch all services to work in production mode (to speed them up). Change dockerfile for that.
